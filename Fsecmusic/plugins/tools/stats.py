@@ -13,11 +13,10 @@ from Fsecmusic import app
 from Fsecmusic.core.userbot import assistants
 from Fsecmusic.misc import SUDOERS, mongodb
 from Fsecmusic.plugins import ALL_MODULES
-from Fsecmusic.utils.database import get_served_chats, get_served_users, get_sudoers
+from Fsecmusic.utils.database import get_served_chats, get_served_users, get_sudoers, remove_served_chat, remove_served_user
 from Fsecmusic.utils.decorators.language import language, languageCB
 from Fsecmusic.utils.inline.stats import back_stats_buttons, stats_buttons
 from config import BANNED_USERS
-
 
 @app.on_message(filters.command(["stats", "gstats"]) & filters.group & ~BANNED_USERS)
 @language
@@ -29,7 +28,6 @@ async def stats_global(client, message: Message, _):
         reply_markup=upl,
     )
 
-
 @app.on_callback_query(filters.regex("stats_back") & ~BANNED_USERS)
 @languageCB
 async def home_stats(client, CallbackQuery, _):
@@ -38,7 +36,6 @@ async def home_stats(client, CallbackQuery, _):
         text=_["gstats_2"].format(app.mention),
         reply_markup=upl,
     )
-
 
 @app.on_callback_query(filters.regex("TopOverall") & ~BANNED_USERS)
 @languageCB
@@ -70,7 +67,6 @@ async def overall_stats(client, CallbackQuery, _):
         await CallbackQuery.message.reply_photo(
             photo=config.STATS_IMG_URL, caption=text, reply_markup=upl
         )
-
 
 @app.on_callback_query(filters.regex("bot_stats_sudo"))
 @languageCB
@@ -133,3 +129,21 @@ async def bot_stats(client, CallbackQuery, _):
         await CallbackQuery.message.reply_photo(
             photo=config.STATS_IMG_URL, caption=text, reply_markup=upl
         )
+
+@app.on_message(filters.group & filters.left_chat_member & ~BANNED_USERS)
+async def group_removal_handler(client, message: Message):
+    await remove_served_chat(message.chat.id)
+    await update_stats()
+
+@app.on_message(filters.private & filters.command("start"))
+async def user_removal_handler(client, message: Message):
+    if not await is_served_user(message.from_user.id):
+        await remove_served_user(message.from_user.id)
+    await update_stats()
+
+async def update_stats():
+    served_chats = len(await get_served_chats())
+    served_users = len(await get_served_users())
+    # Update the stats wherever necessary
+    # For example, if you have a stats message that needs to be updated, do it here
+    # Example: await update_stats_message(served_chats, served_users)
