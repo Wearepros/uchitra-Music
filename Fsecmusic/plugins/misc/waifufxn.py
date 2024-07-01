@@ -19,7 +19,7 @@ def get_animation(api_token, animation_type):
         return None
 
 # Command handlers for various animations
-@app.on_message(filters.command(["punch", "slap", "lick", "kill", "kick", "hug", "bite", "kiss", "highfive", "die", "run", "shoot", "dance"]) & ~filters.forwarded & ~filters.via_bot)
+@app.on_message(filters.command(["punch", "slap", "lick", "kill","hug", "bite", "kiss", "highfive", "die", "run", "shoot", "dance"]) & ~filters.forwarded & ~filters.via_bot)
 def animation_command(client, message):
     try:
         sender = message.from_user.mention(style='markdown')
@@ -30,7 +30,6 @@ def animation_command(client, message):
             "slap": {"emoji": "😒", "text": "slapped"},
             "lick": {"emoji": "😛", "text": "licked"},
             "kill": {"emoji": "😵", "text": "killed"},
-            "kick": {"emoji": "😠", "text": "kicked"},
             "hug": {"emoji": "🤗", "text": "hugged"},
             "bite": {"emoji": "😈", "text": "bit"},
             "kiss": {"emoji": "😘", "text": "kissed"},
@@ -42,7 +41,7 @@ def animation_command(client, message):
         }
 
         command = message.command[0].lower()
-        api_token = "MTI0NTIzMTA5NDYxMDEzNzEyMA--.MTcxNzEzNzE3OA--.c69a207b0"
+        api_token = "MTI1NDc2Mzk0ODU0NTE0Njg5MQ--.MTcxOTIyOTcxNw--.49e6c9c85"
         gif_url = get_animation(api_token, command)
 
         if gif_url:

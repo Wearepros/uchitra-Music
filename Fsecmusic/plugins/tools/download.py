@@ -3,49 +3,13 @@ from urllib.parse import urlparse
 import os
 import asyncio
 import requests
-import instaloader
-import wget
 import yt_dlp
-import config
-from config import *
 from youtubesearchpython import SearchVideos
 from youtube_search import YoutubeSearch
 from yt_dlp import YoutubeDL
-from bs4 import BeautifulSoup
 from pyrogram import Client, filters
 from pyrogram.types import *
 from Fsecmusic import app
-
-# Initialize Instaloader
-loader = instaloader.Instaloader()
-
-# ------------------------------------------------------------------------------- #
-
-###### INSTAGRAM REELS DOWNLOAD
-
-@app.on_message(filters.command("insta"))
-async def download_instagram_reel(client, message: Message):
-    try:
-        if len(message.command) < 2:
-            await message.reply_text("Please provide an Instagram link after the command.")
-            return
-        
-        url = message.command[1]
-        response = requests.get(f"https://karma-api2.vercel.app/instadl?url={url}")
-        
-        if response.status_code == 200:
-            data = response.json()
-            video_url = data.get("url")
-            if video_url:
-                await message.reply_video(video_url)
-            else:
-                await message.reply_text("No content found in the response.")
-        else:
-            await message.reply_text(f"Request failed with status code: {response.status_code}")
-    except Exception as e:
-        await message.reply_text(f"Something went wrong: {e}")
-
-# ---------------------------------------------Audio From yt---------------------------------------------------------
 
 @app.on_message(filters.command("audio"))
 def download_song(_, message):
@@ -62,11 +26,8 @@ def download_song(_, message):
         thumb = requests.get(thumbnail, allow_redirects=True)
         open(thumb_name, "wb").write(thumb.content)
         duration = results[0]["duration"]
-
-        # Add these lines to define views and channel_name
         views = results[0]["views"]
         channel_name = results[0]["channel"]
-
     except Exception as e:
         m.edit("**⚠️ ɴᴏ ʀᴇsᴜʟᴛs ᴡᴇʀᴇ ғᴏᴜɴᴅ. ᴍᴀᴋᴇ sᴜʀᴇ ʏᴏᴜ ᴛʏᴘᴇᴅ ᴛʜᴇ ᴄᴏʀʀᴇᴄᴛ sᴏɴɢ ɴᴀᴍᴇ**")
         print(str(e))
@@ -101,16 +62,7 @@ def download_song(_, message):
     except Exception as e:
         print(e)
         
-# --------------------------------------------video from yt-------------------------------------------------------------
-
-def get_file_extension_from_url(url):
-    url_path = urlparse(url).path
-    basename = os.path.basename(url_path)
-    return basename.split(".")[-1]
-
-
 def get_text(message: Message) -> [None, str]:
-    """Extract Text From Commands"""
     text_to_return = message.text
     if message.text is None:
         return None
@@ -121,7 +73,6 @@ def get_text(message: Message) -> [None, str]:
             return None
     else:
         return None
-
 
 @app.on_message(filters.command(["yt", "video"]))
 async def ytmusic(client, message: Message):
@@ -166,10 +117,10 @@ async def ytmusic(client, message: Message):
             infoo = ytdl.extract_info(url, False)
             round(infoo["duration"] / 60)
             ytdl_data = ytdl.extract_info(url, download=True)
-
     except Exception as e:
         await pablo.edit(f"**ғᴀɪʟᴇᴅ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ.** \n**ᴇʀʀᴏʀ :** `{str(e)}`")
         return
+
     c_time = time.time()
     file_stark = f"{ytdl_data['id']}.mp4"
     capy = f"❄ **ᴛɪᴛʟᴇ :** [{thum}]({mo})\n💫 **ᴄʜᴀɴɴᴇʟ :** {thums}\n✨ **sᴇᴀʀᴄʜᴇᴅ :** {urlissed}\n🥀 **ʀᴇǫᴜᴇsᴛᴇᴅ ʙʏ :** {chutiya}"
@@ -192,10 +143,3 @@ async def ytmusic(client, message: Message):
     for files in (sedlyf, file_stark):
         if files and os.path.exists(files):
             os.remove(files)
-
-
-
-__mod_name__ = "Vɪᴅᴇᴏ"
-__help__ = """ 
-/video to download video song
-/yt to download video song """
