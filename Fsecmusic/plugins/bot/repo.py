@@ -31,7 +31,7 @@ async def start(_, msg):
             ],
      
             [
-             InlineKeyboardButton("ᴏᴡɴᴇʀ", url="https://t.me/II_SUDO_II"),
+             InlineKeyboardButton("ᴏᴡɴᴇʀ", url="https://t.me/Moon_God_Khonsu"),
              InlineKeyboardButton("sᴜᴘᴘᴏʀᴛ", url="https://t.me/FALCON_SECURITY"),
              ],
      
