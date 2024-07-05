@@ -32,8 +32,8 @@ UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "Master")
 GIT_TOKEN = getenv("GIT_TOKEN", None)
 
 # Support and contact information - Provide your own support channels
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "t.me/FALCON_SECURITY")
-SUPPORT_CHAT = getenv("SUPPORT_CHAT", "t.me/indian_hacker_group")
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/FALCON_SECURITY")
+SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/indian_hacker_group")
 
 # Server limits and configurations - These can be set based on your server configurations
 SERVER_PLAYLIST_LIMIT = int(getenv("SERVER_PLAYLIST_LIMIT", "3000"))
