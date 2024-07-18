@@ -3,7 +3,6 @@ import time
 import requests
 from Fsecmusic import app
 from config import BOT_USERNAME
-
 from pyrogram.enums import ChatAction, ParseMode
 from pyrogram import filters
 
@@ -18,22 +17,30 @@ async def chat_gpt(bot, message):
                 "**Hello Sir, Welcome to Falcon Help. How can I help you today?**"
             )
         else:
-            a = message.text.split(' ', 1)[1]
-            response = requests.get(f'https://chatgpt.apinepdev.workers.dev/?question={a}')
-
+            question = message.text.split(' ', 1)[1]
+            url = f'https://chatgpt.apinepdev.workers.dev/?question={question}'
             try:
-                response_json = response.json()
-                if "answer" in response_json:
-                    x = response_json["answer"]
-                    end_time = time.time()
-                    telegram_ping = str(round((end_time - start_time) * 1000, 3)) + " ms"
-                    await message.reply_text(
-                        f"{x}",
-                        parse_mode=ParseMode.MARKDOWN
-                    )
-                else:
-                    await message.reply_text("No 'answer' key found in the response.")
-            except (KeyError, ValueError) as e:
-                await message.reply_text(f"Error processing the response: {e}")
+                response = requests.get(url)
+                response.raise_for_status()  # Raises an HTTPError for bad responses (4xx or 5xx)
+                
+                try:
+                    response_json = response.json()
+                    if "answer" in response_json:
+                        answer = response_json["answer"]
+                        end_time = time.time()
+                        telegram_ping = str(round((end_time - start_time) * 1000, 3)) + " ms"
+                        await message.reply_text(
+                            f"{answer}",
+                            parse_mode=ParseMode.MARKDOWN
+                        )
+                    else:
+                        await message.reply_text("No 'answer' key found in the response.")
+                except (KeyError, ValueError) as e:
+                    await message.reply_text(f"Error processing the response: {e}")
+            except requests.exceptions.RequestException as e:
+                await message.reply_text(f"HTTP request error: {e}")
+                print(f"HTTP request error: {e}")
     except Exception as e:
         await message.reply_text(f"**Error: {e}**")
+        print(f"General error: {e}")
+                        
