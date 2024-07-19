@@ -13,12 +13,12 @@ BOT_TOKEN = getenv("BOT_TOKEN")
 
 # Specify where to get the following credentials
 OWNER_USERNAME = getenv("OWNER_USERNAME", "Moon_God_Khonsu")
-BOT_USERNAME = getenv("BOT_USERNAME", "Fsec_music_bot")
-BOT_NAME = getenv("BOT_NAME", "◬𝙁𝙎𝙀𝘾_𝙈𝙐𝙎𝙄𝘾◬")
-ASSUSERNAME = getenv("ASSUSERNAME", "Fsec_assis")
+BOT_USERNAME = getenv("BOT_USERNAME", "Falcon_Probot")
+BOT_NAME = getenv("BOT_NAME", "Falcon •🪽")
+ASSUSERNAME = getenv("ASSUSERNAME", "II_FALCON_II")
 EVALOP = list(map(int, getenv("EVALOP", "7028569727").split()))
 MONGO_DB_URI = getenv("MONGO_DB_URI", None)
-LOGGER_ID = int(getenv("LOGGER_ID", -1002202161635))
+LOGGER_ID = int(getenv("LOGGER_ID", -1002155266073))
 DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 17000))
 # External APIs - Get these from their respective providers
 GPT_API = getenv("GPT_API")
@@ -38,7 +38,7 @@ SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/indian_hacker_group")
 # Server limits and configurations - These can be set based on your server configurations
 SERVER_PLAYLIST_LIMIT = int(getenv("SERVER_PLAYLIST_LIMIT", "3000"))
 PLAYLIST_FETCH_LIMIT = int(getenv("PLAYLIST_FETCH_LIMIT", "2500"))
-AUTO_LEAVING_ASSISTANT = getenv("AUTO_LEAVING_ASSISTANT", "False")
+AUTO_LEAVING_ASSISTANT = getenv("AUTO_LEAVING_ASSISTANT", "True")
 SONG_DOWNLOAD_DURATION = int(getenv("SONG_DOWNLOAD_DURATION", "9999999"))
 SONG_DOWNLOAD_DURATION_LIMIT = int(getenv("SONG_DOWNLOAD_DURATION_LIMIT", "9999999"))
 
