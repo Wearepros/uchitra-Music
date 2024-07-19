@@ -61,7 +61,7 @@ async def chat_fsec(app, message):
         await app.send_chat_action(message.chat.id, ChatAction.TYPING)
         name = message.from_user.first_name
         if len(message.command) < 2:
-            await message.reply_text(f"**Hello {name}, I am FSEC. How can I help you today?**")
+            await message.reply_text(f"**Hello {name}, I am Falcon How can I help you today?**")
         else:
             query = message.text.split(' ', 1)[1]
             MODEL = "gpt-3.5-turbo"
