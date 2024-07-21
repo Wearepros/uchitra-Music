@@ -14,7 +14,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InputMedi
 from MukeshAPI import api
 from lexica.constants import languageModels
 from httpx import AsyncClient
-
+from Fsecmusic import app
 
 
 @app.on_message(filters.command(["alcon"], prefixes=["F", "f"]))
