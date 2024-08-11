@@ -1,4 +1,4 @@
-from Fsecmusic.core.bot import JARVIS
+from Fsecmusic.core.bot import FALCON 
 from Fsecmusic.core.dir import dirr
 from Fsecmusic.core.git import git
 from Fsecmusic.core.userbot import Userbot
