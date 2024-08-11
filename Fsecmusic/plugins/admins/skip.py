@@ -2,7 +2,7 @@ from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, Message
 
 import config
-from Fsecmusic import YouTube, app
+from Fsecmusic import YouTube, app, YTB
 from Fsecmusic.core.call import FALCON
 from Fsecmusic.misc import db
 from Fsecmusic.utils.database import get_loop
@@ -138,13 +138,21 @@ async def skip(cli, message: Message, _, chat_id):
                 video=status,
             )
         except:
-            return await mystic.edit_text(_["call_6"])
+            try:
+                file_path, direct = await YTB.download(
+                    videoid,
+                    mystic,
+                    videoid=True,
+                    video=status,
+                )
+            except:
+                return await mystic.edit_text(_["call_6"])
         try:
             image = await YouTube.thumbnail(videoid, True)
         except:
             image = None
         try:
-            await FALCON.skip_stream(chat_id, file_path, video=status, image=image)
+            await Falcon.skip_stream(chat_id, file_path, video=status, image=image)
         except:
             return await mystic.edit_text(_["call_6"])
         button = stream_markup(_, chat_id)
