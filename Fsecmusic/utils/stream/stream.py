@@ -5,16 +5,16 @@ from typing import Union
 from pyrogram.types import InlineKeyboardMarkup
 
 import config
-from Fsecmusic import Carbon, YouTube, app
+from Fsecmusic import Carbon, YouTube, app, YTB
 from Fsecmusic.core.call import FALCON
 from Fsecmusic.misc import db
 from Fsecmusic.utils.database import add_active_video_chat, is_active_chat
 from Fsecmusic.utils.exceptions import AssistantErr
 from Fsecmusic.utils.inline import aq_markup, close_markup, stream_markup
-from Fsecmusic.utils.pastebin import FSECBIN
+from Fsecmusic.utils.pastebin import ANNIEBIN
 from Fsecmusic.utils.stream.queue import put_queue, put_queue_index
 from Fsecmusic.utils.thumbnails import get_thumb
-
+from youtubesearchpython.__future__ import VideosSearch
 
 async def stream(
     _,
@@ -78,7 +78,12 @@ async def stream(
                         vidid, mystic, video=status, videoid=True
                     )
                 except:
-                    raise AssistantErr(_["play_14"])
+                    try:
+                        file_path, direct = await YTB.download(
+                            vidid, mystic, video=status, videoid=True
+                        )
+                    except:
+                        await mystic.edit_text(_["play_14"])
                 await FALCON.join_call(
                     chat_id,
                     original_chat_id,
@@ -116,7 +121,7 @@ async def stream(
         if count == 0:
             return
         else:
-            link = await FSECBIN(msg)
+            link = await ANNIEBIN(msg)
             lines = msg.count("\n")
             if lines >= 17:
                 car = os.linesep.join(msg.split(os.linesep)[:17])
@@ -142,7 +147,12 @@ async def stream(
                 vidid, mystic, videoid=True, video=status
             )
         except:
-            raise AssistantErr(_["play_14"])
+            try:
+                file_path, direct = await YTB.download(
+                    vidid, mystic, videoid=True, video=status
+                )
+            except:
+                await mystic.edit_text(_["play_14"])
         if await is_active_chat(chat_id):
             await put_queue(
                 chat_id,
