@@ -217,7 +217,7 @@ async def del_back_playlist(client, CallbackQuery, _):
             return await CallbackQuery.answer(_["admin_1"], show_alert=True)
         await CallbackQuery.answer()
         await music_off(chat_id)
-        await JARVIS.pause_stream(chat_id)
+        await FALCON.pause_stream(chat_id)
         buttons = [
         [
             InlineKeyboardButton(text="ʀᴇsᴜᴍᴇ", callback_data=f"ADMIN Resume|{chat_id}"),
@@ -232,7 +232,7 @@ async def del_back_playlist(client, CallbackQuery, _):
             return await CallbackQuery.answer(_["admin_3"], show_alert=True)
         await CallbackQuery.answer()
         await music_on(chat_id)
-        await JARVIS.resume_stream(chat_id)
+        await FALCON.resume_stream(chat_id)
         buttons_resume = [
         [
             
