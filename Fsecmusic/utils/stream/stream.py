@@ -11,7 +11,7 @@ from Fsecmusic.misc import db
 from Fsecmusic.utils.database import add_active_video_chat, is_active_chat
 from Fsecmusic.utils.exceptions import AssistantErr
 from Fsecmusic.utils.inline import aq_markup, close_markup, stream_markup
-from Fsecmusic.utils.pastebin import ANNIEBIN
+from Fsecmusic.utils.pastebin import FSECBIN
 from Fsecmusic.utils.stream.queue import put_queue, put_queue_index
 from Fsecmusic.utils.thumbnails import get_thumb
 from youtubesearchpython.__future__ import VideosSearch
@@ -121,7 +121,7 @@ async def stream(
         if count == 0:
             return
         else:
-            link = await ANNIEBIN(msg)
+            link = await FSECBIN(msg)
             lines = msg.count("\n")
             if lines >= 17:
                 car = os.linesep.join(msg.split(os.linesep)[:17])
