@@ -1,10 +1,3 @@
-"""
-FALCON OP
-
-"""
-
-
-
 import requests
 from pyrogram import Client, filters
 from requests.adapters import HTTPAdapter
