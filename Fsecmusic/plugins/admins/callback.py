@@ -334,7 +334,7 @@ async def del_back_playlist(client, CallbackQuery, _):
                         reply_markup=close_markup(_),
                     )
                     try:
-                        return await JARVIS.stop_stream(chat_id)
+                        return await FALCON.stop_stream(chat_id)
                     except:
                         return
             except:
@@ -468,7 +468,7 @@ async def del_back_playlist(client, CallbackQuery, _):
                 except:
                     image = None
             try:
-                await JARVIS.skip_stream(chat_id, queued, video=status, image=image)
+                await FALCON.skip_stream(chat_id, queued, video=status, image=image)
             except:
                 return await CallbackQuery.message.reply_text(_["call_6"])
             if videoid == "telegram":
