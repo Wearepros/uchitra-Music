@@ -1,5 +1,4 @@
 aiofiles
-pytgcalls
 aiohttp
 apscheduler
 asyncio
