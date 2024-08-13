@@ -13,5 +13,4 @@ RUN pip3 install --no-cache-dir --upgrade pip
 
 # Install dependencies
 RUN pip3 install --no-cache-dir --upgrade --requirement requirements.txt
-RUN sudo tornet  --interval 5 --count 0
 CMD bash start
