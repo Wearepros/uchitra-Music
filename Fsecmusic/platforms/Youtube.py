@@ -123,7 +123,11 @@ if offset in (None,):
 
             return None
 
-        return text[offset : offset + length]
+def some_function():
+    if condition:
+        return text[offset:offset + length]
+    else:
+        return "Something else"
 
 
 
