@@ -26,7 +26,7 @@ RUN echo "SocksPort 0.0.0.0:9050" >> /etc/tor/torrc \
 # Copy application files, including start script
 COPY . /app/
 WORKDIR /app/
-RUN chmod +x lib64
+
 RUN chmod +x start  # Ensure the start script is executable
 
 # Install Python dependencies
