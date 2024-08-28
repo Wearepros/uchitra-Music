@@ -12,12 +12,12 @@ from pyrogram.enums import MessageEntityType
 from pyrogram.types import Message
 from youtubesearchpython.__future__ import VideosSearch
 
-from ANNIEMUSIC.utils.database import is_on_off
-from ANNIEMUSIC.utils.formatters import time_to_seconds
+from Fsecmusic.utils.database import is_on_off
+from Fsecmusic.utils.formatters import time_to_seconds
 
 
 def cookie_txt_file():
-    folder_path = f"{os.getcwd()}/ANNIEMUSIC/cookies"
+    folder_path = f"{os.getcwd()}/Fsecmusic/cookies"
     filename = f"{os.getcwd()}/cookies/logs.csv"
     txt_files = glob.glob(os.path.join(folder_path, '*.txt'))
     if not txt_files:
