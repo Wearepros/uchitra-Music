@@ -6,7 +6,7 @@ from Fsecmusic import app
 
 #--------------------------
 
-MUST_JOIN = "INDIAN_HACKER_GROUP" "FALCON_SECURITY"
+MUST_JOIN = "INDIAN_HACKER_GROUP" "IRARE_CHANNEL"
 #------------------------
 @app.on_message(filters.incoming & filters.private, group=-1)
 async def must_join_channel(app: Client, msg: Message):
