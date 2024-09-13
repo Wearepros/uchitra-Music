@@ -31,12 +31,12 @@ async def start(_, msg):
             ],
      
             [
-             InlineKeyboardButton("ᴏᴡɴᴇʀ", url="https://t.me/Moon_God_Khonsu"),
-             InlineKeyboardButton("sᴜᴘᴘᴏʀᴛ", url="https://t.me/FALCON_SECURITY"),
+             InlineKeyboardButton("ᴏᴡɴᴇʀ", url="https://t.me/GODXORION"),
+             InlineKeyboardButton("sᴜᴘᴘᴏʀᴛ", url="https://t.me/FALCON_SEC"),
              ],
      
              [
-             InlineKeyboardButton("sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ", url="https://t.me/INDIAN_HACKER_GROUP"),          
+             InlineKeyboardButton("sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ", url="https://t.me/INDIAN_HACKER_GROUP"),      
              InlineKeyboardButton("︎ᴍᴜsɪᴄ", url=f"https://github.com/UNEMPLOID/FSEC-MUSIC"),
              ],
      
